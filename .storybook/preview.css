@@ -1,0 +1,7 @@
+html body .sb-show-main {
+  background: #ffffff !important;
+}
+
+html .sb-show-main.dark {
+  background: #161616 !important;
+}

@@ -1,0 +1,32 @@
+/* ============================================
+   Global Styles Entrypoint
+   ============================================ */
+
+/* Import Design Tokens */
+@import "./tokens.css";
+
+/* Import TailwindCSS v4 */
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* --------------------------------------------
+   Base Styles
+   -------------------------------------------- */
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    @apply font-sans antialiased;
+  }
+
+  body {
+    min-height: 100vh;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+  }
+}
