@@ -8,7 +8,7 @@ export interface TabBarProps extends ComponentProps<"div"> {
 }
 
 const tabBarStyles = tv({
-  base: "flex items-end border-g200 border-b",
+  base: "flex items-end border-g200 border-b-hairline",
 });
 
 export function TabBar({ children, className, ...props }: TabBarProps) {
