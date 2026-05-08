@@ -23,7 +23,7 @@ const buttonStyles = tv({
     },
     variant: {
       destructive:
-        "bg-d500 text-g0 focus-visible:ring-d400 enabled:active:bg-d700 enabled:hover:bg-d600 disabled:bg-g200 disabled:text-g400",
+        "bg-d500 text-white focus-visible:ring-d400 enabled:active:bg-d700 enabled:hover:bg-d600 disabled:bg-g200 disabled:text-g400",
       ghost:
         "bg-transparent text-g950 focus-visible:ring-g300 enabled:active:bg-g100 enabled:hover:bg-g50 disabled:text-g400",
       primary:

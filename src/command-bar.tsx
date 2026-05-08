@@ -7,7 +7,10 @@ import { tv } from "./utils/tv";
 
 // Search component
 export interface CommandBarSearchProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "className" | "type"> {
+  extends Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    "className" | "type" | "value"
+  > {
   className?: string;
   icon?: ReactNode;
 }
@@ -38,10 +41,9 @@ export function CommandBarSearch({
   return (
     <div className={styles.base({ className })}>
       {icon ? <span className={styles.icon()}>{icon}</span> : null}
-      <input
+      <Command.Input
         className={styles.input()}
         placeholder={placeholder}
-        type="text"
         {...props}
       />
     </div>
@@ -147,12 +149,12 @@ export interface CommandBarEmptyProps {
 
 const commandBarEmpty = tv({
   slots: {
-    base: "flex flex-col items-center justify-center gap-2 py-12",
+    base: "flex flex-col items-center justify-center gap-4 py-12",
     description: [
       "max-w-[240px] text-center text-g400 text-small",
       "[font-feature-settings:'ss03','lnum','tnum']",
     ],
-    icon: "flex h-8 w-8 items-center justify-center rounded-full bg-g100 text-g400 [&_svg]:h-4 [&_svg]:w-4",
+    icon: "inset-ring-g200 inset-ring-hairline flex h-9 w-9 items-center justify-center rounded-r2 bg-g100 text-g500 [&_svg]:size-5",
     title: [
       "text-g700 text-small-medium",
       "[font-feature-settings:'ss03','lnum','tnum']",
@@ -172,10 +174,12 @@ export function CommandBarEmpty({
     <Command.Empty>
       <div className={styles.base({ className })}>
         {icon ? <div className={styles.icon()}>{icon}</div> : null}
-        {title ? <div className={styles.title()}>{title}</div> : null}
-        {description ? (
-          <div className={styles.description()}>{description}</div>
-        ) : null}
+        <div className="flex flex-col items-center gap-1.5 text-center">
+          {title ? <div className={styles.title()}>{title}</div> : null}
+          {description ? (
+            <div className={styles.description()}>{description}</div>
+          ) : null}
+        </div>
       </div>
     </Command.Empty>
   );
@@ -237,7 +241,7 @@ export type CommandBarProps = ComponentProps<typeof Command> & {
 const commandBar = tv({
   slots: {
     base: [
-      "flex w-[550px] flex-col overflow-hidden rounded-r2 bg-g0",
+      "flex w-[550px] flex-col overflow-hidden rounded-r2 bg-g0 transition-colors",
       "shadow-lg",
     ],
   },
@@ -254,7 +258,24 @@ export function CommandBar(props: CommandBarProps) {
   );
 }
 
-/**
- * Export primitives from cmdk
- */
-export const CommandBarList = Command.List;
+const commandBarList = tv({
+  slots: {
+    base: ["h-(--cmdk-list-height) max-h-120 min-h-50"],
+  },
+});
+
+export type CommandBarListProps = ComponentProps<typeof Command.List> & {
+  children: ReactNode;
+  className?: string;
+};
+
+export function CommandBarList(props: CommandBarListProps) {
+  const styles = commandBarList();
+
+  return (
+    <Command.List
+      {...props}
+      className={styles.base({ className: props.className })}
+    />
+  );
+}
