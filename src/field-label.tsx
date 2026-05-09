@@ -30,7 +30,7 @@ export const FieldLabel = ({
     <label className={root({ className })} htmlFor={props.htmlFor} {...props}>
       <span className={label()}>{children}</span>
       {hint ? (
-        <Tooltip content={hint}>
+        <Tooltip className="flex" content={hint}>
           <span className={hintTrigger()}>{icon ?? <IconCircleInfo />}</span>
         </Tooltip>
       ) : null}

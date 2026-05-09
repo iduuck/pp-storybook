@@ -21,7 +21,9 @@ export function Tooltip({
 }: TooltipProps) {
   return (
     <TooltipPrimitive.Root>
-      <TooltipPrimitive.Trigger className={className}>
+      <TooltipPrimitive.Trigger
+        className={cn("relative after:absolute after:-inset-1", className)}
+      >
         {children}
       </TooltipPrimitive.Trigger>
       <TooltipPrimitive.Portal>
